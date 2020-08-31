@@ -1,0 +1,24 @@
+<div class="content">
+	<br />
+	<br>
+	<div class="control-buttons">		
+		<button mat-button class="slide-up" (click)="home()"><mat-icon>keyboard_backspace</mat-icon> Voltar</button>
+		<button mat-raised-button  color="primary" class="slide-up" (click)="novoPedido()" style="margin-left:16px;"><mat-icon class="menu-button">add_shopping_cart</mat-icon> Novo Pedido</button>		
+	</div>
+	<p class="instruction">Estes são os pedidos de {{cliente.Nome}}</p>
+	<br />
+	<br>
+	<mat-card>
+		<mat-nav-list>
+			<mat-list-item  class="item-list" *ngFor="let pedido of pedidos">
+				<mat-divider></mat-divider>
+				<mat-icon>shopping_cart</mat-icon>				
+				<p class="infos"> 
+					<strong>Id do Pedido: </strong> {{ pedido.Id }}
+					<strong>Data: </strong>{{ pedido.Data}}
+				 	<strong>Valor Total</strong> {{ pedido.ValorTotal }}
+				</p>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-card>
+</div>

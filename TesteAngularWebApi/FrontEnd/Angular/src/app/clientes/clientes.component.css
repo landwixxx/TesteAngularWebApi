@@ -1,0 +1,48 @@
+.content{
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.list-item-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+.menu-div{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 0;
+    position: sticky;
+    top: 88%;
+    left: 95%; 
+    width: fit-content;
+    z-index: 100;
+}
+
+
+.mat-menu-item{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+@media(max-width: 699px)
+{
+    .content{
+        width: auto;       
+    }
+
+    .list-item-content{
+        display: flex;
+        flex-direction: column;
+        margin-left: 1rem;
+    }
+    
+}

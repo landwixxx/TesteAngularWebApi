@@ -1,0 +1,80 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; }
+body { 	
+	margin: 0; 
+	font-family: 'Archivo', sans-serif;
+	justify-content: center;
+	background-color: #ebd100;
+}
+
+.full-width{
+	width: 100%;
+}
+
+header{
+	height: 20%;
+	background-color: #3f51b5;
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+a:link{
+	text-decoration: none;
+}
+
+.header-content{
+	width: 90%;
+	display: flex;
+}
+
+.home-logo:link{
+	text-decoration: none;
+}
+
+.logo{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;    
+}
+
+.logo > p{    
+    font-family: 'Poppins', sans-serif;
+	font-size: xx-large;
+	color: white;
+	margin: 0;
+}
+
+.logo-img{
+    width: 3rem;
+}
+
+app-root{
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+}
+
+.instruction{
+	display: flex;
+	align-items: center;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-top: 1.8rem;
+}
+
+.menu-button{
+	color: #ebd100;
+	align-items: center;
+	text-align: center;
+	text-indent: 0%;
+}
+
+.slide-up{
+    transition: 0.2s;    
+}
+.slide-up:hover,
+.full-width:hover{
+    transform: translateY(-7px);
+}

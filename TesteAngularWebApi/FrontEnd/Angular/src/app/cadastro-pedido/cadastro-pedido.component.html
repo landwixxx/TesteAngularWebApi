@@ -1,0 +1,49 @@
+<div class="content">
+	<mat-card>	
+	<p class="instruction">
+		Selecione os produtos que o cliente deseja comprar...
+	</p>	
+	<mat-divider></mat-divider>
+	<mat-nav-list class="client-list">
+	  <mat-list-item *ngFor="let produto of produtos" [class.selected]="produto === selectedProduto"
+	  (click)="add(produto)">
+					<mat-divider></mat-divider>
+					<img class="item-image" src="{{produto.Imagem}}" alt="Imagem não encontrada">
+					<p class="infos">
+						<strong>{{ produto.Nome }}</strong>
+						<small class="description">{{ produto.Descricao }} </small>
+					</p>							
+					<p class="price">
+						<strong>R$ </strong> {{ produto.Valor }}
+					</p>	
+		</mat-list-item>
+	</mat-nav-list>			
+	</mat-card>
+	<mat-card class="cart">	
+	<p class="instruction"><mat-icon>shopping_cart</mat-icon>Carrinho</p>	
+	<mat-divider></mat-divider>
+		<form [formGroup]="form" (ngSubmit)="onSubmit()">
+			<mat-nav-list class="client-list">
+				<mat-list-item class="cart-item" *ngFor="let produto of selectedProdutos" id={{selectedProdutos.indexOf(produto)}} >
+					<mat-divider></mat-divider>
+					<img class="item-image" src="{{produto.Imagem}}" alt="Imagem não encontrada">
+					<p class="infos">
+						<strong>{{ produto.Nome }}</strong>
+						<small>{{ produto.Email }}</small>
+					</p>
+					<button mat-raised-button class="full-width-button hover takeOff" color="primary" type="button" (click)="takeOff(produto)"><mat-icon>cancel</mat-icon></button>
+				</mat-list-item>
+			</mat-nav-list>
+			<mat-form-field class="full-width">
+				<input  matInput type="number"  placeholder="Desconto (Se houver)" formControlName="desconto" value="0">
+				<mat-error *ngIf="form.controls.desconto.hasError('required')">
+					Não existe desconto negativo
+				</mat-error>
+			</mat-form-field>		
+			<div class="form-control">
+				<button mat-raised-button class="full-width-button hover cancel" color="primary" type="button" (click)="home()"><mat-icon>cancel</mat-icon> Cancelar</button>
+				<button mat-raised-button class="full-width-button hover" color="primary"><mat-icon class="add-button">check</mat-icon> Fechar Pedido </button>
+			</div>
+		</form>		
+	</mat-card>
+</div>

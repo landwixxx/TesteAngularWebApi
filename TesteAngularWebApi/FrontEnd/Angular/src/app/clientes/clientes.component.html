@@ -1,0 +1,36 @@
+
+<div class="content" style="margin:32px;">
+	
+	<br />
+	
+	<p class="instruction">
+		Selecione um cliente para começar...
+	</p>
+
+	<br />
+	<mat-card class="container">
+		<mat-nav-list class="client-list">
+			<mat-list-item *ngFor="let cliente of clientes" (click)="pedidos(cliente)">
+				<mat-divider></mat-divider>
+				<mat-icon>person</mat-icon>
+				<div class="list-item-content">
+					<strong>{{ cliente.Nome }}</strong>
+					<small>{{ cliente.Email }}</small>
+				</div>
+			</mat-list-item>
+		</mat-nav-list>	
+		<div class="menu-div">		
+			<button mat-fab [matMenuTriggerFor]="menu" color="primary">
+				<mat-icon class="menu-button">add</mat-icon>
+			</button>
+			<mat-menu #menu="matMenu">
+				<button mat-menu-item color="primary" (click)="novo()">+ Novo Cliente</button>
+				<button mat-menu-item color="primary" (click)="produtos()">Produtos</button>
+			</mat-menu>
+		</div>		
+	</mat-card>
+
+	<br>
+	<br>
+</div>
+

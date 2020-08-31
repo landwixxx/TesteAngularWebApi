@@ -1,0 +1,36 @@
+<div class="content">	
+	<mat-card-title class="title">
+		Primeiro preencha o formulário abaixo
+	</mat-card-title>
+	<mat-card>
+		<br>
+		<form [formGroup]="form" (ngSubmit)="onSubmit()">	
+			<mat-form-field class="full-width">
+				<input matInput color="black" placeholder="Digite um nome para o cliente" formControlName="nome">
+				<mat-error *ngIf="form.controls.nome.hasError('required')">
+					Você deve colocar um <strong >nome</strong>!
+				</mat-error>
+			</mat-form-field>
+	
+			<br />
+			<br />
+	
+			<mat-form-field class="full-width">
+				<input matInput placeholder="Email ex.: cliente@yahoo.com.br" formControlName="email">
+				<mat-error *ngIf="form.controls.nome.hasError('required')">
+					O email é <strong>requerido</strong>
+				</mat-error>
+			</mat-form-field>
+	
+			<br />
+			<br />
+			<div class="form-control">
+				<button mat-raised-button class="full-width-button hover cancel" color="primary" type="button" (click)="home()"><mat-icon>cancel</mat-icon> Cancelar</button>
+				<button mat-raised-button class="full-width-button hover" color="primary"><strong class="add-button">+ </strong> Adicionar</button>
+			</div>
+			
+	
+		</form>
+	
+	</mat-card>
+</div>

@@ -1,0 +1,34 @@
+.content{
+    width: 90vw;
+}
+
+.infos {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;    
+}
+
+mat-tem-list{
+    width: 100%;
+}
+
+.list-item-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-icon{
+    margin-right: 1.6rem;
+}
+
+.mat-raised-button{
+    transition: .2s;
+    text-align: center;
+    align-items: center;
+}
+
+.control-buttons{
+    display: flex;
+    justify-content: space-between;
+}

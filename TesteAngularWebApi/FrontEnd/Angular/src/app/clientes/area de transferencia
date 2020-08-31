@@ -1,0 +1,143 @@
+	<mat-nav-list>
+		<mat-list-item *ngFor="let cliente of clientes" (click)="pedidos(cliente)">
+			<mat-divider></mat-divider>
+			<mat-icon>account_circle</mat-icon>
+			<p><strong>{{ cliente.Nome }}</strong> - <small>{{ cliente.Email }}</small>	</p>
+		</mat-list-item>
+	</mat-nav-list>	
+
+
+
+    <mat-list-item *ngFor="let pedido of pedidos">
+			<mat-icon>message</mat-icon>
+			{{ mensagem.DataHora | date:'medium'}}
+			<br />
+			{{ mensagem.Descricao }}
+	</mat-list-item>
+
+-----
+<mat-nav-list>
+		<div *ngIf="produtos as null; else elseBlock">
+			<mat-list-item>
+				<mat-icon>not_interested</mat-icon>
+				Nenhum produto encontrado
+			</mat-list-item>
+		</div>
+	<ng-template #elseBlock>
+		<mat-list-item *ngFor="let produto of produtos">
+			<mat-icon>shopping_cart</mat-icon>
+			{{ produto.Nome}}
+			<br />
+			{{ produto.Id }}
+			<img src={{produto.Image}} alt="./assets/img/produtos/imageless-product">
+		</mat-list-item>
+	</ng-template>		
+	</mat-nav-list>
+-----
+
+
+			<h2>Produtos disponíveis</h2>
+	<ul class="produtos">
+  		<li *ngFor="let produto of produtos"
+    		[class.selected]="produto === selectedProduto"
+    		(click)="onSelect(produto)">
+    		<span class="badge">{{produto.Id}}</span> {{produto.Nome}}
+  		</li>
+	</ul>
+
+	<div *ngIf="selectedProdutos">
+		<ul class="produtos">
+			<li class="produtos" *ngFor="let produto of selectedProdutos"
+		  		[class.selected]="produto === selectedProduto"
+		  		(click)="offSelect(produto)">
+		  		<span class="badge">{{produto.Id}}</span> {{produto.Nome}}
+			</li>
+	  	</ul>
+	</div>
+
+-----------
+
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { error } from 'console';
+
+const NO_IMAGE_PRODUCT = './assets/img/produtos/imageless-product';
+
+class Produto {
+	public Id: number;
+	public Nome: string;
+	public Descricao: string;
+	public Valor: string;
+	public Imagem: string;
+}
+
+class NovoProduto {
+	public Nome: string;
+	public Valor: number;
+	public Descricao: string;
+	public Imagem: string;
+}
+
+@Component({
+	selector: 'app-cadastro-produto',
+	templateUrl: './cadastro-produto.component.html',
+	styleUrls: ['./cadastro-produto.component.css']
+})
+export class CadastroProdutoComponent implements OnInit {
+
+	produtos: Produto[] = [] ; 
+
+	form: FormGroup;
+
+	httpOptions = {
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json'
+		})
+	};
+
+	constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
+		this.form = this.formBuilder.group({
+			nome: ['', Validators.required],
+			valor:[ '',	Validators.compose(
+			[ 
+			Validators.required,
+			Validators.min(1)]),
+			],
+			descricao: ['',Validators.required],
+			imagem: ['', Validators.required]
+		});
+	}
+
+	ngOnInit() {
+
+		this.http.get<Produto[]>('http://localhost:49493/api/produtos/')
+			.subscribe(produtosEncontrados => this.produtos = produtosEncontrados);
+	}
+
+	home(){
+		this.router.navigate(['']);
+	}
+
+	onSubmit() {
+
+		console.log('AQUI GARAI')
+		
+		if (this.form.invalid) {
+			console.log("entrou aqui tb poha")
+			return;
+		}
+
+
+		let novoProduto = this.form.value as NovoProduto;
+		
+		this.http.post('http://localhost:49493/api/produtos/', JSON.stringify(novoProduto), this.httpOptions)
+			.subscribe(data => {
+				this.router.navigate(['/produtos']);
+			}, error => {
+				console.log('Error', error);
+			});
+
+	}
+}

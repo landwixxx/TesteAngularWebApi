@@ -1,0 +1,89 @@
+
+.back-button{
+  border: none;
+  box-shadow: none;
+  color: #ebd100;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+.content{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-card-title{
+    margin-bottom: 2.4rem;
+}
+
+.mat-card{
+    margin:32px;
+    width: 60vw;   
+}
+
+.title
+{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-top: 2.4rem;
+}
+
+.mat-form-field{
+    color: black;
+}
+
+.matInput{
+    color: black;
+}
+
+strong{
+    color: #3f51b5;
+}
+
+.form-control{
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-button{
+    color: #ebd100;
+}
+
+.cancel{
+    background-color: #ebd100;
+    color: black;
+}
+
+.full-width-button, .full-width, .mat-raised-button{
+    transition: 0.15s;    
+}
+
+.full-width:hover, .mat-raised-button:hover{
+    transform: translateY(-7px);
+}
+
+@media(max-width: 699px){
+    
+   
+    .content{
+        transition: 0.5s;
+        transform: translateY(3.2rem);        
+    }
+
+    
+    .mat-card{
+        width: 100vw;
+        height: 100%;
+        margin:0;
+        border-radius: 0;
+        padding: 1.6rem;    
+    }
+
+    .full-width-button{        
+        width: 100%;
+        transition: 0.2s;
+    }
+}
